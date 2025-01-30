@@ -1,9 +1,14 @@
 <?php
 
-$hostname = 'localhost';
-$database = 'to_do_list';
-$username = 'postgres';
-$password = 'postgres';
+require __DIR__ . "./../vendor/autoload.php";
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__, './../.env');
+$dotenv->load();
+
+$hostname = $_ENV['HOST_NAME'];
+$database = $_ENV['DATABASE_NAME'];
+$username = $_ENV['USER_NAME'];
+$password = $_ENV['PASSWORD'];
 
 try {
     $pdo = new PDO("pgsql:host=$hostname;dbname=$database", $username, $password);
